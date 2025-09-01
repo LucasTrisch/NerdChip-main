@@ -2,6 +2,7 @@ package comNerdChip.NerdChip.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import comNerdChip.NerdChip.dtos.UsuarioDTO;
 import comNerdChip.NerdChip.models.Usuario;
@@ -11,14 +12,17 @@ import comNerdChip.NerdChip.repositories.UsuarioRepository;
 @Service
 public class UsuarioService {
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     public List<UsuarioDTO> listarTodos() {
-        return UsuarioRepository.findAll().stream()
+        return usuarioRepository.findAll()
+                .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
-
     public UsuarioDTO buscarPorId(Long id) {
-        Usuario usuario = ((Object) UsuarioRepository.findById(id))
+        Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com id: " + id));
         return toDTO(usuario);
     }
@@ -64,8 +68,8 @@ public class UsuarioService {
                 dto.getId(),
                 dto.getNome(),
                 dto.getEmail(),
-                dto.getSenha(),
-                dto.getTelefone(),
+                dto.getSenha(), // Assuming getTelefone() exists in UsuarioDTO
+                dto.getTelefone(), // Assuming getEndereco() exists in UsuarioDTO
                 dto.getEndereco()
         );
     }

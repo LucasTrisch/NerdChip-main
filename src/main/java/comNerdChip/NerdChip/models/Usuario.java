@@ -15,7 +15,6 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private String papel;
     private String telefone;
     private String endereco;
 
@@ -24,12 +23,11 @@ public class Usuario {
     @OneToMany(mappedBy="usuario")
     List<Pedido> pedidos;
     
-    public Usuario(Long id, String nome, String email, String senha, String papel, String telefone, String endereco) {
+    public Usuario(Long id, String nome, String email, String senha, String telefone, String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.papel = papel;
         this.telefone = telefone;
         this.endereco = endereco;
     }
@@ -38,7 +36,6 @@ public class Usuario {
         this.nome = usuarioDTO.getNome();
         this.email = usuarioDTO.getEmail();
         this.senha = usuarioDTO.getSenha();
-        this.papel = usuarioDTO.getPapel();
         this.telefone = usuarioDTO.getTelefone();
         this.endereco = usuarioDTO.getEndereco();
     }
@@ -66,12 +63,6 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public String getPapel() {
-        return papel;
-    }
-    public void setPapel(String papel) {
-        this.papel = papel;
-    }
     public String getTelefone() {
         return telefone;
     }
@@ -91,7 +82,6 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", papel='" + papel + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco='" + endereco + '\'' +
                 '}';

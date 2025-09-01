@@ -66,7 +66,7 @@ public class PedidoService {
         return new Pedido(
                 dto.getId(),
                 dto.getNumero(),
-                dto.getPreco(),
+                dto.getPreco().floatValue(),
                 dto.getLista(),
                 dto.getPagamento()
         );

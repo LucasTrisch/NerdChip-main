@@ -1,7 +1,6 @@
 package comNerdChip.NerdChip.dtos;
 
 import comNerdChip.NerdChip.models.Pedido;
-import comNerdChip.NerdChip.models.Produto;
 
 public class PedidoDTO {
     private long id;
@@ -10,7 +9,7 @@ public class PedidoDTO {
     private String lista;
     private String pagamento;
 
-    public PedidoDTO(Long long1, int i, float f, String string, String string2) {
+    public PedidoDTO(Long long1, int i, Double f, String string, String string2) {
     }
 
     public void ProdutoDTO(Long id, int numero,float preco, String lista, String pagamento) {
@@ -28,6 +27,10 @@ public class PedidoDTO {
         this.preco = pedido.getPreco();
         this.pagamento = pedido.getPagamento();
     }
+    public PedidoDTO(Long id2, int numero2, Double preco2, String lista2, String pagamento2) {
+        //TODO Auto-generated constructor stub
+    }
+
     public Pedido toModel() {
         return new Pedido();
     }
@@ -56,7 +59,7 @@ public class PedidoDTO {
     }
 
     public Double getPreco() {
-        return preco;
+        return (double) preco;
     }
 
     public void setPreco(float preco) {
@@ -71,15 +74,28 @@ public class PedidoDTO {
             this.pagamento = pagamento;
     }
 
+    public int getNumero() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNumero'");
+    }
+
+    public int getNumero() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public int getNumero() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     public String getLista() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getLista'");
     }
 
-    public int getNumero() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNumero'");
+    public String getLista() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }
     
 

@@ -1,15 +1,16 @@
 package comNerdChip.NerdChip.models;
-
-import jakarta.persistence.*;
-import lombok.extern.java.Log;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 @Entity
 @Table (name ="Pedidos") 
 public class Pedido {
     @Id
     private Long id;
     private int numero;
-    private float preco;
+    private Double preco;
     private String lista;
     private String pagamento;
 
@@ -44,12 +45,12 @@ public class Pedido {
         this.numero = numero;
     }
 
-    public float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
-        this.preco = preco;
+    public void setPreco(Double preco) {
+        this.preco = (double) preco;
     }
 
     public String getLista() {

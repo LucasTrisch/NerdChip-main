@@ -1,5 +1,4 @@
 package comNerdChip.NerdChip.dtos;
-import comNerdChip.NerdChip.models.Usuario;
 
 public class UsuarioDTO {
 
@@ -8,7 +7,7 @@ public class UsuarioDTO {
     private String email;
     private String senha;
 
-    public UsuarioDTO() {
+    public UsuarioDTO(Long id1, String nome1, String email1, String senha1, String telefone, String endereco) {
     }
 
     public UsuarioDTO(Long id, String nome, String email, String senha) {
@@ -49,4 +48,13 @@ public class UsuarioDTO {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getTelefone() {
+        throw new UnsupportedOperationException("Unimplemented method 'getTelefone'");
+    }
+
+    public String getEndereco() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
