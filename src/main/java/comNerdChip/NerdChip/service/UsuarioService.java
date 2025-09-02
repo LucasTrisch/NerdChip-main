@@ -2,26 +2,30 @@ package comNerdChip.NerdChip.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
+
 import comNerdChip.NerdChip.dtos.UsuarioDTO;
 import comNerdChip.NerdChip.models.Usuario;
 import comNerdChip.NerdChip.repositories.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
+    private final UsuarioRepository usuarioRepository;
 
     public List<UsuarioDTO> listarTodos() {
-        return UsuarioRepository.findAll().stream()
+        return usuarioRepository.findAll().stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
-
     public UsuarioDTO buscarPorId(Long id) {
-        Usuario usuario = ((Object) UsuarioRepository.findById(id))
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com id: " + id));
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow();
         return toDTO(usuario);
     }
+
     public UsuarioDTO criar(UsuarioDTO dto) {
         Usuario usuario = toEntity(dto);
         Usuario novoUsuario = usuarioRepository.save(usuario);
