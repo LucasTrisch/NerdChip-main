@@ -1,3 +1,4 @@
+package comNerdChip.NerdChip.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,6 @@ import comNerdChip.NerdChip.repositories.PedidoRepository;
 
 @Service
 public class PedidoService {
-
     @Autowired
     private PedidoRepository pedidoRepository;
 
@@ -27,22 +27,17 @@ public class PedidoService {
         return toDTO(pedido);
     }
 
-    public PedidoDTO criar(PedidoDTO dto) {
+     public PedidoDTO criar(PedidoDTO dto) {
         Pedido pedido = toEntity(dto);
-        Pedido salvo = pedidoRepository.save(pedido);
-        return toDTO(salvo);
+        pedidoRepository.save(pedido);
+        return toDTO(pedido);
     }
+    
     public PedidoDTO atualizar(Long id, PedidoDTO dto) {
-        Pedido pedidoExistente = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com id: " + id));
-
-        pedidoExistente.setNumero(dto.getNumero());
-        pedidoExistente.setPreco(dto.getPreco());
-        pedidoExistente.setLista(dto.getLista());
-        pedidoExistente.setPagamento(dto.getPagamento());
-
-        Pedido atualizado = pedidoRepository.save(pedidoExistente);
-        return toDTO(atualizado);
+        Pedido produto = toEntity(dto);
+        produto.setId(id);
+        pedidoRepository.save(produto);
+        return toDTO(produto);
     }
 
     public void deletar(Long id) {

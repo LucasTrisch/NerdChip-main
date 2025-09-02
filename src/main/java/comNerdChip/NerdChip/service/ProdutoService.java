@@ -3,6 +3,7 @@ package comNerdChip.NerdChip.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import comNerdChip.NerdChip.dtos.ProdutoDTO;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ProdutoService {
+    @Autowired
     private final ProdutoRepository produtoRepository;
 
     public List<ProdutoDTO> listarTodos() {
@@ -45,10 +47,16 @@ public class ProdutoService {
     }
 
     private ProdutoDTO toDTO(Produto produto) {
-        return new ProdutoDTO(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getPreco(), null);
+        return new ProdutoDTO(produto.getId(),
+        produto.getNome(),
+        produto.getDescricao(),
+        produto.getPreco(), null);
     }
 
     private Produto toEntity(ProdutoDTO dto) {
-        return new Produto(dto.getId(), dto.getNome(), dto.getDescricao(), dto.getPreco(), null);
+        return new Produto(dto.getId(),
+        dto.getNome(),
+        dto.getDescricao(),
+        dto.getPreco(), null);
     }
 }

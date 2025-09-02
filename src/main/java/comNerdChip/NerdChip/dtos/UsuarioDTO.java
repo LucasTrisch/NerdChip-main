@@ -6,6 +6,9 @@ public class UsuarioDTO {
     private String nome;
     private String email;
     private String senha;
+    private double telefone;
+    private String endereco;
+
 
     public UsuarioDTO(Long id1, String nome1, String email1, String senha1, String telefone, String endereco) {
     }
@@ -43,18 +46,26 @@ public class UsuarioDTO {
 
     public String getSenha() {
         return senha;
-    }
+        }
 
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public String getTelefone() {
-        throw new UnsupportedOperationException("Unimplemented method 'getTelefone'");
+    public String getEndereco() {
+        return endereco;
+        }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public String getEndereco() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setTelefone(double telefone) {
+        this.telefone = telefone;
     }
+    public double getTelefone() {
+        return telefone;
+    }
+
 
 }

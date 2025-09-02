@@ -2,12 +2,13 @@ package comNerdChip.NerdChip.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import comNerdChip.NerdChip.dtos.UsuarioDTO;
 import comNerdChip.NerdChip.models.Usuario;
 import comNerdChip.NerdChip.repositories.UsuarioRepository;
-
 
 @Service
 public class UsuarioService {
@@ -18,9 +19,11 @@ public class UsuarioService {
     public List<UsuarioDTO> listarTodos() {
         return usuarioRepository.findAll()
                 .stream()
-                .map(this::toDTO)
+                .map(this::toDTO) // Changed from toDTO(Produto) to toDTO(Usuario)
                 .collect(Collectors.toList());
     }
+
+    // 🔹 Buscar por ID
     public UsuarioDTO buscarPorId(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com id: " + id));
@@ -44,14 +47,12 @@ public class UsuarioService {
         Usuario atualizado = usuarioRepository.save(usuarioExistente);
         return toDTO(atualizado);
     }
-
     public void deletar(Long id) {
         if (!usuarioRepository.existsById(id)) {
             throw new RuntimeException("Usuário não encontrado com id: " + id);
         }
         usuarioRepository.deleteById(id);
     }
-
     private UsuarioDTO toDTO(Usuario usuario) {
         return new UsuarioDTO(
                 usuario.getId(),
@@ -62,14 +63,13 @@ public class UsuarioService {
                 usuario.getEndereco()
         );
     }
-
     private Usuario toEntity(UsuarioDTO dto) {
         return new Usuario(
                 dto.getId(),
                 dto.getNome(),
                 dto.getEmail(),
-                dto.getSenha(), // Assuming getTelefone() exists in UsuarioDTO
-                dto.getTelefone(), // Assuming getEndereco() exists in UsuarioDTO
+                dto.getSenha(),
+                dto.getTelefone(),
                 dto.getEndereco()
         );
     }

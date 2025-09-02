@@ -5,7 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
-@Table (name ="Pedidos") 
+@Table (name ="Pedido") 
 public class Pedido {
     @Id
     private Long id;
@@ -18,7 +18,6 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    
     public Pedido(){}
 
     public Pedido(Long id,int numero,Double preco,String lista,String pagamento){

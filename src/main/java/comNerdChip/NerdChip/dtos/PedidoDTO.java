@@ -5,18 +5,18 @@ import comNerdChip.NerdChip.models.Pedido;
 public class PedidoDTO {
     private long id;
     private int numero;
-    private float preco;
+    private Double preco;
     private String lista;
     private String pagamento;
 
-    public PedidoDTO(Long long1, int i, Double f, String string, String string2) {
+    public PedidoDTO(Long long1, int i, Double double1, String string, String string2) {
     }
 
     public void ProdutoDTO(Long id, int numero,float preco, String lista, String pagamento) {
         this.id = id;
         this.numero = numero;
         this.lista = lista;
-        this.preco = preco;
+        this.preco = (double) preco;
         this.pagamento = pagamento;
     }
 
@@ -26,9 +26,6 @@ public class PedidoDTO {
         this.lista = pedido.getLista();
         this.preco = pedido.getPreco();
         this.pagamento = pedido.getPagamento();
-    }
-    public PedidoDTO(Long id2, int numero2, Double preco2, String lista2, String pagamento2) {
-        //TODO Auto-generated constructor stub
     }
 
     public Pedido toModel() {
@@ -42,11 +39,11 @@ public class PedidoDTO {
         this.id = id;
     }
 
-    public int getNome() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNome(int numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -63,39 +60,23 @@ public class PedidoDTO {
     }
 
     public void setPreco(float preco) {
-        this.preco = preco;
+        this.preco = (double) preco;
     }
 
     public String getPagamento() {
         return pagamento;
     }
 
+    public void setLista( String lista) {
+            this.lista = lista;
+    }
+    public String getLista() {
+        return lista;
+    }
+
     public void setPagamento( String pagamento) {
             this.pagamento = pagamento;
     }
-
-    public int getNumero() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNumero'");
-    }
-
-    public int getNumero() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int getNumero() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String getLista() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLista'");
-    }
-
-    public String getLista() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }
     
 

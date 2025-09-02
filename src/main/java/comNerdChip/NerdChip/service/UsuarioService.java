@@ -3,6 +3,7 @@ package comNerdChip.NerdChip.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import comNerdChip.NerdChip.dtos.UsuarioDTO;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
+    @Autowired
     private final UsuarioRepository usuarioRepository;
 
     public List<UsuarioDTO> listarTodos() {
@@ -32,17 +34,10 @@ public class UsuarioService {
         return toDTO(novoUsuario);
     }
     public UsuarioDTO atualizar(Long id, UsuarioDTO dto) {
-        Usuario usuarioExistente = usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com id: " + id));
-
-        usuarioExistente.setNome(dto.getNome());
-        usuarioExistente.setEmail(dto.getEmail());
-        usuarioExistente.setSenha(dto.getSenha());
-        usuarioExistente.setTelefone(dto.getTelefone());
-        usuarioExistente.setEndereco(dto.getEndereco());
-
-        Usuario atualizado = usuarioRepository.save(usuarioExistente);
-        return toDTO(atualizado);
+        Usuario usuario = toEntity(dto);
+        usuario.setId(id);
+        usuarioRepository.save(usuario);
+        return toDTO(usuario);
     }
 
     public void deletar(Long id) {
@@ -57,9 +52,8 @@ public class UsuarioService {
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
-                usuario.getSenha(),
-                usuario.getTelefone(),
-                usuario.getEndereco()
+                usuario.getSenha()
+                
         );
     }
 
@@ -68,9 +62,8 @@ public class UsuarioService {
                 dto.getId(),
                 dto.getNome(),
                 dto.getEmail(),
-                dto.getSenha(),
-                dto.getTelefone(),
-                dto.getEndereco()
+                dto.getSenha(), null, null
+                               
         );
     }
 }
