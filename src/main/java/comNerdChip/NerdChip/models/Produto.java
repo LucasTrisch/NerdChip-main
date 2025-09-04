@@ -1,12 +1,17 @@
 package comNerdChip.NerdChip.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Produto {
+
+    @ManyToMany
+    @JoinTable(
+        name = "produto_pedido",
+        joinColumns = @JoinColumn(name = "produto_id"),
+        inverseJoinColumns = @JoinColumn(name = "pedido_id")
+    )
+    private java.util.List<Pedido> pedidos;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

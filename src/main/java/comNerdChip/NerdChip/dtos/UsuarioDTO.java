@@ -6,7 +6,7 @@ public class UsuarioDTO {
     private String nome;
     private String email;
     private String senha;
-    private double telefone;
+    private String telefone;
     private String endereco;
 
 
@@ -60,11 +60,11 @@ public class UsuarioDTO {
         this.endereco = endereco;
     }
 
-    public void setTelefone(double telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public double getTelefone() {
-        return telefone;
+    public String getTelefone() {
+        return (String) telefone;
     }
 
 
